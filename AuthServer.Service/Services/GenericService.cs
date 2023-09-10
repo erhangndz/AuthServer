@@ -1,6 +1,7 @@
 ﻿using AuthServer.Core.Repositories;
 using AuthServer.Core.Services;
 using AuthServer.Core.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
 using SharedLibrary.Dtos;
 using System;
 using System.Collections.Generic;
@@ -78,11 +79,12 @@ namespace AuthServer.Service.Services
             return Response<NoDataDto>.Success(204);
         }
 
-        public Task<Response<IEnumerable<TDto>>> Where(Expression<Func<TEntity, bool>> predicate)
+        public async Task<Response<IEnumerable<TDto>>> Where(Expression<Func<TEntity, bool>> predicate)
         {
             var list = _genericRepository.Where(predicate);
 
-            list.ToList();
+            return Response<IEnumerable<TDto>>.Success(ObjectMapper.Mapper.Map<IEnumerable<TDto>>(await list.ToListAsync()),200);
+           
         }
     }
-}
+}  
