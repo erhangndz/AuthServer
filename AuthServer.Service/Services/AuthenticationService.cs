@@ -30,7 +30,7 @@ namespace AuthServer.Service.Services
 
         public async Task<Response<TokenDto>> CreateTokenAsync(LoginDto loginDto)
         {
-           
+            
             
 
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
