@@ -15,11 +15,11 @@ namespace MiniApp2.API.Controllers
         {
             var userName = HttpContext.User.Identity.Name;
 
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
 
 
 
-            return Ok($" Invoice İşlemleri=> UserName: {userName} - UserId: {userId}");
+            return Ok($" Invoice İşlemleri=> UserName: {userName} - UserId: {userIdClaim.Value}");
 
         }
     }
