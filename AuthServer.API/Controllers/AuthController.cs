@@ -38,7 +38,7 @@ namespace AuthServer.API.Controllers
         {
 
 
-            var result = await _authenticationService.CreateTokenByRefreshToken(refreshToken.Token);
+            var result = await _authenticationService.RevokeRefreshToken(refreshToken.Token);
 
             return ActionResultInstance(result);
         }

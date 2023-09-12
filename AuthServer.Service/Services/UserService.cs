@@ -1,6 +1,7 @@
 ﻿using AuthServer.Core.DTOs;
 using AuthServer.Core.Models;
 using AuthServer.Core.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using SharedLibrary.Dtos;
 using System;
@@ -44,14 +45,19 @@ namespace AuthServer.Service.Services
 
         public async Task<Response<UserAppDto>> GetUserByNameAsync(string userName)
         {
+
             var user = await _userManager.FindByNameAsync(userName);
 
-            if(user == null)
+            if (user == null)
             {
                 return Response<UserAppDto>.Fail("Username Not Found", 404, true);
             }
 
             return Response<UserAppDto>.Success(ObjectMapper.Mapper.Map<UserAppDto>(user), 200);
+
+
+
+
         }
     }
 }

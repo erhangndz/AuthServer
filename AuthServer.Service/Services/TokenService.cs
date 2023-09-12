@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SharedLibrary.Configuration;
+using SharedLibrary.Services;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -37,7 +38,7 @@ namespace AuthServer.Service.Services
             return Convert.ToBase64String(numberByte);
         }
 
-        private IEnumerable<Claim> GetClaim(UserApp userApp,List<String> audiences)
+        private IEnumerable<Claim> GetClaim(UserApp userApp,List<string> audiences)
         {
             var userList = new List<Claim> {
             new Claim(ClaimTypes.NameIdentifier,userApp.Id),

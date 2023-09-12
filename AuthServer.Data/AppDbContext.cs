@@ -12,19 +12,20 @@ namespace AuthServer.Data
 {
     public class AppDbContext:IdentityDbContext<UserApp,IdentityRole,string>
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+
         {
-            optionsBuilder.UseSqlServer("server=ERHAN\\SQLEXPRESS;database=DbAuthServerJWT;integrated security=true");
         }
 
         public DbSet<Product> Products { get; set; }
-        public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
 
+        public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(GetType().Assembly);
-            base.OnModelCreating(builder);  
+
+            base.OnModelCreating(builder);
         }
     }
 }

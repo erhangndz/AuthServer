@@ -114,7 +114,7 @@ namespace AuthServer.Service.Services
             {
                 return Response<NoDataDto>.Fail("Refresh Token Not Found", 404, true);
             }
-            _userRefreshTokenService.RemoveAsync(existRefreshToken);
+            _userRefreshTokenService.Remove(existRefreshToken);
 
             await _unitOfWork.CommitAsync();
             return Response<NoDataDto>.Success(200);
