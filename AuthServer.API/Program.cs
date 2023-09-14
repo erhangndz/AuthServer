@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SharedLibrary.Configuration;
+using SharedLibrary.Exceptions;
+using SharedLibrary.Extensions;
 using SharedLibrary.Services;
 using System.Configuration;
 
@@ -78,6 +80,8 @@ builder.Services.AddControllers().AddFluentValidation(options =>
 {
     options.RegisterValidatorsFromAssemblyContaining<Program>();
 });
+
+builder.UseCustomValidationResponse();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -96,17 +100,21 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 
-
-    app.UseHttpsRedirection();
-    app.UseRouting();
-    app.UseAuthentication();
-    app.UseAuthorization();
-
-    app.MapControllers();
-
-    app.Run();
-
 }
+app.UseCustomExceptions();
+app.UseHttpsRedirection();
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
+
+
+
+
+
 
 
 
