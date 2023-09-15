@@ -47,7 +47,8 @@ namespace AuthServer.Service.Services
             new Claim(JwtRegisteredClaimNames.Email,userApp.Email),
             new Claim(ClaimTypes.Name,userApp.UserName),
             new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
-            new Claim("City",userApp.City)
+            new Claim("City",userApp.City),
+            new Claim("BirthDate",userApp.BirthDate.ToString())
 
             };
 

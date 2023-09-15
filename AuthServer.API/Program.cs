@@ -6,7 +6,6 @@ using AuthServer.Core.UnitOfWork;
 using AuthServer.Data;
 using AuthServer.Data.Repositories;
 using AuthServer.Service.Services;
-using FluentAssertions.Common;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -15,7 +14,6 @@ using SharedLibrary.Configuration;
 using SharedLibrary.Exceptions;
 using SharedLibrary.Extensions;
 using SharedLibrary.Services;
-using System.Configuration;
 
 
 
